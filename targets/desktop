@@ -28,13 +28,12 @@ for BROWSER in netsurf-gtk dillo hv3 ""; do
     fi
 done
 
-install kali-desktop-xfce dbus-x11 ubuntu=shimmer-themes, \
-        -- hddtemp xorg
+install kali-desktop-xfce dbus-x11, \
+        -- hddtemp xorg network-manager
 
 # Avoid /etc/skel/.xscreensaver conflicts
 xsvr='/etc/skel/.xscreensaver'
 [ -f "$xsvr" ] && mv -f "$xsvr" "$xsvr.bak"
-install ubuntu=xubuntu-desktop,task-xfce-desktop -- network-manager xorg
 [ -f "$xsvr.bak" ] && mv -f "$xsvr.bak" "$xsvr"
 
 
