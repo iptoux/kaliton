@@ -1,0 +1,24 @@
+#!/bin/sh -e
+# Copyright (c) 2022 The crouton Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+REQUIRES='core kalifix'
+DESCRIPTION='Installs the default kali linux metapackage.'
+HOSTBIN='startcli'
+CHROOTBIN='croutonpowerd'
+. "${TARGETSDIR:="$PWD"}/common"
+
+### Append to prepare.sh:
+
+echo "Update the package list..."
+apt-get -y -qq update
+
+install dbus openssh-client kbd
+
+# Install kali linux core metapackage
+install kali-linux-default -- network-manager
+
+TIPS="$TIPS
+Kali Linux 'default' metapackage successfully installed in your chroot.\n
+start a shell in a new VT via the startcli host command: sudo startcli
+"
