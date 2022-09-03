@@ -1,1 +1,9 @@
-.vscode
+*.tar.*
+.*.swp
+.*.tmp
+nacl_sdk/
+/crouton*
+/test/run
+/releases/
+/.vscode/
+/crouton.build/
