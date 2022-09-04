@@ -89,7 +89,6 @@ EOF
 
     ### Install xbindkeys
     echo "installing xbindkeys..."
-    read -p "Press any key to resume ..."
     apt -y -qq install xbindkeys xbindkeys-config
 
     # Remove bullseye sources to exclude conflicts with future install steps
