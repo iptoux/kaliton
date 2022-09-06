@@ -12,8 +12,7 @@ from it, many are removed and recoded.
 
 ## Can i test it?
 
-Yes but, i had just done organize the structure and do some recode, 
-but no tests/run yet.
+Yes but, i may be have bugs/errors.
 
 ## main/dev branch
 
