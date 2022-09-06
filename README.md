@@ -14,6 +14,14 @@ from it, many are removed and recoded.
 
 Yes but, i may be have bugs/errors.
 
+## Install/Usage
+
+Download&install like crouton, after that you can install kali-rolling via `sudo crouton -t headless`.
+You can also use the targets **core, default**
+
+- start headless via `sudo startless`
+- start default via `sudo startcli`
+
 ## main/dev branch
 
 On **dev** branch i do activly push test/beta commits, so please only
