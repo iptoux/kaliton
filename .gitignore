@@ -7,3 +7,4 @@ nacl_sdk/
 /releases/
 /.vscode/
 /crouton.build/
+crouton
