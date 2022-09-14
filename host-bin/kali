@@ -1,0 +1,61 @@
+#!/bin/sh -e
+# Copyright (c) 2016 The crouton Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+
+# Start wrapper to enter the kali chroot
+#
+# You can start your kali chroot install with the simple command: 
+# $ kali
+# 
+# Because the modes "core, headless, default runs all on console/cli,
+# this will start always the cli as default. If you want to start
+# your kali with an desktop (default xorg) you just need to add -d
+# $ kali -d
+
+set -e
+
+APPLICATION="${0##*/}"
+
+USAGE="$APPLICATION [mode]
+
+Enters an installed Kali-rolling chroot for running alongside Chromium OS.
+
+By default, it will log into the primary user on console/cli.
+You can specify a mode to run instead of an interactive shell.
+
+Options:
+    -d          (desktop) Loads kali chroot and start xfce4.
+    -h          displays this help.
+    -X XMETHOD  Override the auto-detected XMETHOD for this session."
+
+# Process arguments
+prevoptind=1
+while getopts 'dhX:x' f; do
+    # Disallow empty string as option argument
+    if [ "$((OPTIND-prevoptind))" = 2 -a -z "$OPTARG" ]; then
+        error 2 "$USAGE"
+    fi
+    prevoptind="$OPTIND"
+    case "$f" in
+    d) DESKTOP='y';;
+    X) TMPXMETHOD="$OPTARG";;
+    *) echo "\n$USAGE"; exit 2;;
+    h) echo $USAGE; exit 0;;
+    esac
+done
+shift "$((OPTIND-1))"
+
+if [ -z $DESKTOP ]; then 
+    echo "DESKTOP is unset";
+else
+    echo "DESKTOP is set to '$DESKTOP'";
+fi
+
+
+if [ -z $TMPXMETHOD ]; then 
+    echo "TMPXMETHOD is unset";
+else
+    echo "TMPXMETHOD is set to '$TMPXMETHOD'";
+fi
