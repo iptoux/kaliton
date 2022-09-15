@@ -770,4 +770,4 @@ if [ -f "$PREPARE" ]; then
     sh -e "$HOSTBINDIR/enter-chroot" -c "$CHROOTS" -n "$NAME" -xx
 fi
 
-echo "Done! You can enter the chroot using enter-chroot." 1>&2
+echo "⇒ Done! You can start your kali linux chroot, using the command >> kali \n⇒ Enter \"kali -h\" for help." 1>&2
