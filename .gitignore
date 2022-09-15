@@ -2,10 +2,10 @@
 .*.swp
 .*.tmp
 nacl_sdk/
-/crouton*
+/kaliton*
 /test/run
 /releases/
 /.vscode/
-/crouton.build/
-crouton
+/kaliton.build/
+kaliton
 .gitpod.yml
