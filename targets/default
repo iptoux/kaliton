@@ -4,7 +4,7 @@
 # found in the LICENSE file.
 REQUIRES='core kalifix'
 DESCRIPTION='Installs the default kali linux metapackage.'
-HOSTBIN='startcli'
+HOSTBIN='kali'
 CHROOTBIN='croutonpowerd'
 . "${TARGETSDIR:="$PWD"}/common"
 
@@ -19,6 +19,7 @@ install dbus openssh-client kbd
 install kali-linux-default -- network-manager
 
 TIPS="$TIPS
-Kali Linux 'default' metapackage successfully installed in your chroot.\n
-start a shell in a new VT via the startcli host command: sudo startcli
+⇒ Done! Kali Linux 'default' metapackage successfully installed in your chroot.\n
+⇒ You can start your kali linux cli, using the command >> kali \n
+⇒ Enter \"kali -h\" for help.
 "
