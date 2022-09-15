@@ -4,7 +4,7 @@
 # found in the LICENSE file.
 REQUIRES='x11'
 DESCRIPTION='Installs the Xfce desktop environment. (Approx. 250MB)'
-HOSTBIN='startxfce4'
+HOSTBIN='kali'
 CHROOTBIN='crouton-noroot startxfce4'
 . "${TARGETSDIR:="$PWD"}/common"
 
@@ -38,5 +38,7 @@ xsvr='/etc/skel/.xscreensaver'
 
 
 TIPS="$TIPS
-You can start Xfce via the startxfce4 host command: sudo startxfce4
+⇒ Done! Kali Linux 'desktop' metapackage successfully installed in your chroot.\n
+⇒ You can start your kali linux desktop, using the command >> kali -d \n
+⇒ Enter \"kali -h\" for help.
 "

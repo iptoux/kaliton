@@ -8,3 +8,4 @@ nacl_sdk/
 /.vscode/
 /crouton.build/
 crouton
+.gitpod.yml

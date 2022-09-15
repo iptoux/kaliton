@@ -14,8 +14,17 @@ from it, many are removed and recoded.
 
 Yes but, i may be have bugs/errors.
 
+## Install/Usage
+
+Download&install like crouton, after that you can install kali-rolling via `sudo crouton -t headless`.
+You can also use the targets **core, default, desktop**
+
+The targets **core, default, headless** coming without an desktop, so all of them start the same console/cli
+
+- start kali (cli) via `sudo kali`
+- start kali desktop via `sudo kali -d`
+
 ## main/dev branch
 
 On **dev** branch i do activly push test/beta commits, so please only
 use the **main** branch for test/usage.
-
