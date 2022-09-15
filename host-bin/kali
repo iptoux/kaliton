@@ -47,15 +47,33 @@ while getopts 'dhX:x' f; do
 done
 shift "$((OPTIND-1))"
 
+run_cli () {
+    if [ -f /sbin/frecon ]; then
+        # Until we get a stable interface to controlling frecon, just use the pty
+        openvt=''
+    else
+        openvt='openvt -vws --'
+    fi
+
+    export TERM='linux'
+    exec sh -e "`dirname "\`readlink -f -- "$0"\`"`/enter-chroot" -t core -l \
+        "$@" "" $openvt
+}
+
+run_desk () {
+    
+    if [ -z $TMPXMETHOD ]; then 
+        exec sh -e "`dirname "\`readlink -f -- "$0"\`"`/enter-chroot" -t desktop "$@" "" \
+        exec startxfce4
+    else
+        exec sh -e "`dirname "\`readlink -f -- "$0"\`"`/enter-chroot" -t desktop -X $TMPXMETHOD "$@" "" \
+        exec startxfce4
+    fi
+
+}
+
 if [ -z $DESKTOP ]; then 
-    echo "DESKTOP is unset";
+    run_cli;
 else
-    echo "DESKTOP is set to '$DESKTOP'";
-fi
-
-
-if [ -z $TMPXMETHOD ]; then 
-    echo "TMPXMETHOD is unset";
-else
-    echo "TMPXMETHOD is set to '$TMPXMETHOD'";
+    run_desk;
 fi
