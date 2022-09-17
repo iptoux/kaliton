@@ -12,7 +12,7 @@ from it, many are removed and recoded.
 [Kaliton](https://github.com/iptoux/kaliton) has it's own starter, called **kali**. The installer will be recalled [kaliton](https://github.com/iptoux/kaliton) in the near future. 
 
 
-## Can i test it? And what tarhets available?
+## Can i test it? And what targets available?
 
 Yes but, it may be have [bugs/errors](https://github.com/iptoux/kaliton/issues). Many things are on my "todo", you can use the "_alpha_" in my [main branch](https://github.com/iptoux/kaliton).
 
