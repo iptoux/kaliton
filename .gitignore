@@ -7,5 +7,4 @@ nacl_sdk/
 /releases/
 /.vscode/
 /kaliton.build/
-kaliton
 .gitpod.yml
