@@ -751,7 +751,7 @@ if [ -n "$TARGETFILE" ]; then
     TARGET="`readlink -f -- "$TARGETFILE"`"
     (. "$TARGET") >> "$PREPARE"
 fi
-t="${TARGETS%,},post-common,"
+t="${TARGETS%,},post-common,post-mods,"
 while [ -n "$t" ]; do
     TARGET="${t%%,*}"
     t="${t#*,}"
@@ -770,4 +770,4 @@ if [ -f "$PREPARE" ]; then
     sh -e "$HOSTBINDIR/enter-chroot" -c "$CHROOTS" -n "$NAME" -xx
 fi
 
-echo "⇒ Done! You can start your kali linux chroot, using the command >> kali \n⇒ Enter \"kali -h\" for help." 1>&2
+echo "⇒ Done! You can start your kali linux chroot, using the command >> sudo kali \n⇒ Enter \"sudo kali -h\" for help." 1>&2
