@@ -1,0 +1,65 @@
+#!/bin/sh -e
+# Copyright (c) 2022 Maik Roland <iptoux> Damm. All rights reserved.
+# Use of this source code is governed by a CC-style license that can be
+# found in the LICENSE file.
+
+
+# This is a target, but it's not selectable by the user. These are the commands
+# that get executed at the very end of the generated prepare.sh.
+# These commands are not optional and are automatically added to targets.
+
+REQUIRES=''
+DESCRIPTION=''
+HOSTBIN='enter-chroot delete-chroot edit-chroot mount-chroot unmount-chroot'
+HOSTBIN="$HOSTBIN crash_reporter_wrapper"
+. "${TARGETSDIR:="$PWD"}/common"
+
+
+## FUNKTIONS
+
+# Validate a chroot name: It cannot contain any /, and cannot be ".", ".." nor
+# an empty string.
+#mv_kaliSH(oldFile) {
+#    if [ -e $oldFile ]; then
+#        newFile=$oldFile'.bak'
+#        mv $oldFile $newFile
+#        return 0
+#    else
+#        return 1
+#    fi
+#}
+
+echo_tty "\n┏━ $(echo_color "r" "(KALITON Mods)")"
+echo_tty "┃"
+echo_tty -n "┃ Removing bug, Multiple Motd on login ⇒ "
+
+#KALISH = mv_kaliSH('/etc/profile.d/kali.sh')
+#if [ $KALISH = 0 ]; then
+    echo_tty "$(echo_color "g" "done")"
+#else
+#    echo_tty "$(echo_color "y" "Warning: File not found!")"
+#fi
+
+echo_tty "┃"
+echo_tty "┃ Installing htop,mc, neofetch, tmux, nvim ⇒ "
+# installing htop, mc, neofetch, tmux, nvim
+apt-get install -qq htop mc neofetch tmux nvim
+echo_tty -n "$(echo_color "g" "done")"
+echo_tty "┃"
+
+echo_tty "┃ Cleaning up ⇒ "
+if [ "${DISTROAKA:-"$DISTRO"}" = 'debian' ]; then
+    apt-get -qq -y --purge autoremove
+    apt-get -qq clean
+fi
+echo_tty -n "$(echo_color "g" "done")"
+echo_tty "┃"
+echo_tty "┗━ $(echo_color "g" "(Finish!)")\n"
+
+if [ -n "$TIPS" ]; then
+    echo "
+$(echo_color "b" "Here's some tips:")
+$TIPS" 1>&2
+fi
+
+rm -f "$0"
