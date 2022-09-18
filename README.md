@@ -37,6 +37,7 @@ You can also use the targets **core, headless, desktop**
 - Download [Kaliton](https://github.com/iptoux/kaliton/raw/releases/crouton)
 - Pop open a shell (Ctrl+Alt+T, type `shell` and hit enter)
 - Make executable and install with `sudo install -Dt /usr/local/bin -m 755 ~/Downloads/kaliton`
+- Remount **tmp** directory with `sudo mount -i -o remount,exec /tmp/`
 - Install Kali Linux (rolling) via `sudo kaliton -t default`
 
 ---
