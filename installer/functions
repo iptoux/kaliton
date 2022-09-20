@@ -294,3 +294,57 @@ websocketcommand() {
     chmod -Rf g+rwX "$PIPEDIR" || true
     chgrp -Rf crouton "$PIPEDIR" || true
 }
+
+echo_colorn()
+{
+    echo -n "$(echo_color "$1" "$2")"
+}
+
+spinner()
+{
+    local pid=$!
+    local delay=0.75
+    local spinstr='|/-\'
+    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+        local temp=${spinstr#?}
+        printf " \033[33m%c\033[0m  " "$spinstr"
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\b\b\b\b"
+    done
+    printf "   \b\b\b"
+}
+
+kinstall()
+{
+    set +e
+    aptf='aptf.txt'
+    touch $aptf
+    echo '' > $aptf
+
+    while [ "$#" -ne 0 ]; do
+
+        if [ "$#" -lt 2 ]; then
+            echo_colorn "b" "$1: "
+            apt install -q -y "$1" >> $aptf 2>&1 &
+            spinner
+        else
+            echo_colorn "b" "$1, "
+            apt install -q -y "$1" >> $aptf 2>&1 &
+            spinner
+        fi
+        #spinner
+    shift
+
+    done
+
+    e=$(grep -e '^[E]:' $aptf)
+
+    if [ "$e" = "" ]; then
+        echo_color "g" "done"
+    else
+        echo_color "r" "$e"
+    fi
+    set -e
+    rm "$aptf"
+}

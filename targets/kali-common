@@ -1,0 +1,50 @@
+#!/bin/sh -e
+# Copyright (c) 2022 Maik Roland <iptoux> Damm. All rights reserved.
+# Use of this source code is governed by a CC-style license that can be
+# found in the LICENSE file.
+
+# This is a target, but it's not selectable by the user. These are the commands
+# that get executed at the very end of the generated prepare.sh.
+# These commands are not optional and are automatically added to targets.
+
+# KALITON ADDONS
+
+REQUIRES=''
+DESCRIPTION=''
+. "${TARGETSDIR:="$PWD"}/common"
+
+### Append to prepare.sh:
+
+echo -n "$(echo_color "r" "KALITON ")"
+echo -n "⇒ Configuring user: "
+echo_color "g" "$username"
+
+echo -n "$(echo_color "r" "KALITON ")"
+echo -n "⇒ Fix multiple Motd on login: "
+if [ -e "/etc/profile.d/kali.sh" ]; then
+    rm /etc/profile.d/kali.sh
+    echo_color "g" "done"
+else
+    echo_color "y" "skipped"
+fi
+
+echo -n "$(echo_color "r" "KALITON ")"
+echo -n "⇒ Installing "
+kinstall "mc" "htop" "tmux" "neofetch" "neovim"
+
+echo -n "$(echo_color "r" "KALITON ")"
+echo -n "⇒ Cleaning up: "
+apt-get -qq -y --purge autoremove
+apt-get -qq clean
+echo_color "g" "done"
+
+
+if [ -n "$TIPS" ]; then
+    echo "
+    $(echo_color "b" "Here's some tips:")
+    $TIPS" 1>&2
+fi
+
+rm -f "$0"
+
+#default-dbus-session-bus | dbus-session-bus cups-common gvfs librsvg2-bin wish

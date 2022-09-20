@@ -56,13 +56,13 @@ for bundle in "$@"; do
         error 1 "$bundle bundle does not exist"
     fi
     version="`sh "$bundle" -V`"
-    if [ "$version" = "${version#crouton*:}" ]; then
+    if [ "$version" = "${version#kaliton*:}" ]; then
         error 1 "$bundle bundle is invalid"
     fi
     branch="${version#*~}"
     branch="${branch%:*}"
-    dest="${branch#master}"
-    dest="crouton${dest:+-}$dest"
+    dest="${branch#main}"
+    dest="kaliton${dest:+-}$dest"
     # Compare the current release to avoid duplicates
     if [ -f "releases/$dest" ] && \
             sh "releases/$dest" -V | grep -q "${version#*~}"; then

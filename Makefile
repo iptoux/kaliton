@@ -2,8 +2,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-TARGET = crouton
-EXTTARGET = crouton.zip
+TARGET = kaliton
+EXTTARGET = kaliton.zip
 LIBS = src/freon.c
 LIBSTARGETS = $(patsubst src/%.c, crouton%.so, $(LIBS))
 SRCTARGETS = $(patsubst src/%.c,crouton%,$(filter-out $(LIBS),$(wildcard src/*.c)))
@@ -22,7 +22,7 @@ EXTPEXESOURCES = $(wildcard host-ext/nacl_src/*.h) \
 				 $(wildcard host-ext/nacl_src/*.cc)
 EXTSOURCES = $(wildcard host-ext/crouton/*)
 BOOTSTRAPS := $(wildcard installer/*/bootstrap)
-BUILDDIR = crouton.build
+BUILDDIR = kaliton.build
 GENVERSION = build/genversion.sh
 CONTRIBUTORSSED = build/CONTRIBUTORS.sed
 RELEASE = build/release.sh
