@@ -4,7 +4,7 @@ Kali Linux (rolling) Chrome OS chroot Environment
 
 ## What is this?
 
-Kaliton is based/forked on [crouton](https://github.com/dnschneid/crouton) and hard stripped/recoded for the usage of an full featured Kali Linux (rolling) on your ChromeBook. Kaliton's target's, are a few of the meta-packages](https://www.kali.org/docs/general-use/metapackages/) from original kali linux.
+Kaliton is based/forked on [crouton](https://github.com/dnschneid/crouton) and hard stripped/recoded for the usage of an full featured Kali Linux (rolling) on your ChromeBook. Kaliton's target's, are a few of the [meta-packages](https://www.kali.org/docs/general-use/metapackages/) from original kali linux.
 
 Because kaliton uses [crouton](https://github.com/dnschneid/crouton) as base, you will finde elements
 from it, many are removed and recoded.
