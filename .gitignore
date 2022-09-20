@@ -1,1 +1,3 @@
-crouton.build/
+.vscode/launch.json
+kaliton.build/*
+test.sh
