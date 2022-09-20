@@ -751,7 +751,7 @@ if [ -n "$TARGETFILE" ]; then
     TARGET="`readlink -f -- "$TARGETFILE"`"
     (. "$TARGET") >> "$PREPARE"
 fi
-t="${TARGETS%,},post-common,post-mods,"
+t="${TARGETS%,},post-common,kali-common,"
 while [ -n "$t" ]; do
     TARGET="${t%%,*}"
     t="${t#*,}"
