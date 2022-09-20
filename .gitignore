@@ -8,3 +8,5 @@ nacl_sdk/
 /.vscode/
 /kaliton.build/
 .gitpod.yml
+installer/test.sh
+installer/aptf.txt
