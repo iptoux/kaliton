@@ -320,31 +320,33 @@ kinstall()
     set +e
     aptf='aptf.txt'
     touch $aptf
-    echo '' > $aptf
-
+    
     while [ "$#" -ne 0 ]; do
 
         if [ "$#" -lt 2 ]; then
+            echo -n "\t⇒ "
             echo_colorn "b" "$1: "
-            apt install -q -y "$1" >> $aptf 2>&1 &
+            apt install -q -y "$1" > $aptf 2>&1 &
             spinner
         else
-            echo_colorn "b" "$1, "
-            apt install -q -y "$1" >> $aptf 2>&1 &
+            echo -n "\t⇒ "
+            echo_colorn "b" "$1: "
+            apt install -q -y "$1" > $aptf 2>&1 &
             spinner
         fi
-        #spinner
+    
+        e=$(grep -e '^[E]:' $aptf)
+
+        if [ "$e" = "" ]; then
+            echo_color "g" "done"
+        else
+            echo_color "r" "$e"
+        fi
+        
     shift
 
     done
 
-    e=$(grep -e '^[E]:' $aptf)
-
-    if [ "$e" = "" ]; then
-        echo_color "g" "done"
-    else
-        echo_color "r" "$e"
-    fi
     set -e
-    rm "$aptf"
+    rm $aptf
 }
