@@ -36,4 +36,12 @@ apt-get -qq clean
 echo_color "g" "done"
 
 
+if [ -n "$TIPS" ]; then
+    echo "
+    $(echo_color "b" "Here's some tips:")
+    $TIPS" 1>&2
+fi
+
+rm -f "$0"
+
 #default-dbus-session-bus | dbus-session-bus cups-common gvfs librsvg2-bin wish

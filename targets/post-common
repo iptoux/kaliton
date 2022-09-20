@@ -66,11 +66,3 @@ else
     username="`awk -F: '$3==1000{print $1; exit}' '/etc/passwd'`"
     usermod -a -G "$groups" "$username"
 fi
-
-if [ -n "$TIPS" ]; then
-    echo "
-    $(echo_color "b" "Here's some tips:")
-    $TIPS" 1>&2
-fi
-
-rm -f "$0"
