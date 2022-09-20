@@ -323,18 +323,11 @@ kinstall()
     
     while [ "$#" -ne 0 ]; do
 
-        if [ "$#" -lt 2 ]; then
-            echo -n "\t⇒ "
-            echo_colorn "b" "$1: "
-            apt install -q -y "$1" > $aptf 2>&1 &
-            spinner
-        else
-            echo -n "\t⇒ "
-            echo_colorn "b" "$1: "
-            apt install -q -y "$1" > $aptf 2>&1 &
-            spinner
-        fi
-    
+        echo -n "\t⇒ "
+        echo_colorn "b" "$1: "
+        apt install -q -y "$1" > $aptf 2>&1 &
+        spinner
+
         e=$(grep -e '^[E]:' $aptf)
 
         if [ "$e" = "" ]; then
