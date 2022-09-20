@@ -21,12 +21,15 @@ echo_color "g" "$username"
 
 echo -n "$(echo_color "r" "KALITON ")"
 echo -n "⇒ Fix multiple Motd on login: "
-rm /etc/profile.d/kali.sh
-echo_color "g" "done"
-
+if [ -e "/etc/profile.d/kali.sh" ]; then
+    rm /etc/profile.d/kali.sh
+    echo_color "g" "done"
+else
+    echo_color "y" "skipped"
+fi
 
 echo -n "$(echo_color "r" "KALITON ")"
-echo -n "⇒ Installing mc, htop, tmux, neofetch, neovim: "
+echo -n "⇒ Installing "
 kinstall "mc" "htop" "tmux" "neofetch" "neovim"
 
 echo -n "$(echo_color "r" "KALITON ")"

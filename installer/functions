@@ -295,6 +295,11 @@ websocketcommand() {
     chgrp -Rf crouton "$PIPEDIR" || true
 }
 
+echo_colorn()
+{
+    echo -n "$(echo_color "$1" "$2")"
+}
+
 spinner()
 {
     local pid=$!
@@ -312,18 +317,25 @@ spinner()
 
 kinstall()
 {
+    set +e
     aptf='aptf.txt'
     touch $aptf
     echo '' > $aptf
-    
+
     while [ "$#" -ne 0 ]; do
-        if [ "$#" -lt 1 ]; then
-            apt install -q -y "$@" > $aptf 2>&1 &
-        else
+
+        if [ "$#" -lt 2 ]; then
+            echo_colorn "b" "$1: "
             apt install -q -y "$1" >> $aptf 2>&1 &
+            spinner
+        else
+            echo_colorn "b" "$1, "
+            apt install -q -y "$1" >> $aptf 2>&1 &
+            spinner
         fi
-        spinner
+        #spinner
     shift
+
     done
 
     e=$(grep -e '^[E]:' $aptf)
@@ -333,5 +345,6 @@ kinstall()
     else
         echo_color "r" "$e"
     fi
-    rm $aptf
+    set -e
+    rm "$aptf"
 }
